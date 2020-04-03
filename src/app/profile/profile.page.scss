@@ -1,0 +1,67 @@
+.div1 {
+
+height: 40%;
+border: solid white;
+background-color: rgb(0, 188, 245);
+border-bottom-right-radius: 40%;
+border-bottom-left-radius: 40%;
+
+}
+.div2{
+    height: 60%;
+    position: relative;
+    border: solid white;
+    
+    }
+    .icon1{
+        height: 15px;
+        position: absolute;
+        right: 0;
+        top :12px;
+    }
+   .divinside{
+       height: 46%;
+       border: solid whitesmoke ;
+       margin-top: 5%;
+       margin-left: 35%;
+       width: 30%;
+       border-radius: 90%;
+       background-color: whitesmoke;
+   } 
+   h6{
+       color:white;
+       margin-left: 3%;
+       font-family: 'Times New Roman', Times, serif;
+   }
+   .myinput{
+    margin-top: 12%;
+    margin-left: 6%;
+    height: 8%;
+    width: 90%;
+    border: solid rgb(249, 249, 250);
+   background-color: rgba(180, 176, 176, 0.712);
+    color: rgb(0, 0, 0);
+    font-family: 'Times New Roman', Times, serif;;
+}
+.button1{
+    margin-top: 12%;
+    margin-left: 6%;
+    height: 8%;
+    width: 90%;
+    border: solid rgb(250, 250, 250);
+    border-radius: 100px;
+    color: whitesmoke;
+    background-color: rgb(0, 188, 245);
+}
+h5{
+    color:white;
+    margin-left: 3%;
+    font-family: 'Times New Roman', Times, serif;
+}
+.myicon{
+  margin-top: 35%;  
+  margin-left: 55%; 
+  height: 100%;
+  width: 50%;
+  color:grey;
+}

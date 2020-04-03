@@ -1,0 +1,35 @@
+
+
+<ion-content >
+<div class="body"> 
+
+<div class="loginform">
+<pre>
+
+</pre>
+<h1 style ="color:white;font-weight:bold">T.C.V</h1>
+<pre>
+</pre>
+<ion-input type ="text" [(ngModel)]="user.email" class="myinput" placeholder="Enter Registration Email" style ="border-radius:20px;border-color:#2821ad;border-style:inset"></ion-input>
+
+<br>
+
+<ion-input type ="password" [(ngModel)]="user.password" class="myinput" placeholder="Enter New Password" style ="border-radius:20px;border-color:#2821ad;border-style:inset"></ion-input>
+
+<br>
+
+<button (click)="fun(user)" class="button1">Register</button>
+       <h6 style ="color:aliceblue">Have an account?</h6>  <ion-button class="create" align="center" color="transparent" expand ="full" (click)="login()">Login</ion-button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</ion-content>

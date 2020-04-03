@@ -1,0 +1,58 @@
+.loginform{
+
+
+    height: 70%;
+    width: 70%;
+    margin: auto;
+    // box-shadow: 100%;
+    -webkit-box-shadow: 0px 0px 15px 8px #000000; 
+    box-shadow: 0px 0px 15px 8px #000000;
+    background: linear-gradient(to bottom left, rgba(3, 3, 3, 0.4) 50%, rgba(0, 0, 0, 0.4) 50%); 
+    
+    
+    }
+    .myinput{
+        margin-top: 12%;
+        margin-left: 6%;
+        height: 8%;
+        width: 90%;
+        border: solid rgb(249, 249, 250);
+       background-color: rgba(65, 65, 65, 0.781);
+        color: rgb(255, 255, 255);
+        font-family: 'Times New Roman', Times, serif;
+        
+    }
+    .button1{
+        margin-top: 12%;
+        margin-left: 6%;
+        height: 8%;
+        width: 90%;
+        border: outset rgb(133, 133, 133);
+        border-radius: 100px;
+        color: whitesmoke;
+    background-color:#2821ad;
+    
+    }
+    h1{
+        text-align: center;
+        color: rgba(0, 0, 0, 0.822);
+        font-family: sans-serif;;
+    
+    }
+    .body{
+    opacity: 0.6;
+    display: flex;
+    background-color:  rgba(180, 176, 176, 0.712);  
+    background: linear-gradient(to bottom left,#16107c 50%,  rgb(75, 75, 77) 50%); 
+     height: 100%;
+    width: 100%;
+    }
+    h6{
+        text-align: center;
+        color: rgba(0, 0, 0, 0.822);
+        font-family: 'Times New Roman', Times, serif;;
+    }
+    .create{
+     color: rgb(138, 136, 255);   
+    }
+    
