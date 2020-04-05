@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import * as firebase from 'firebase';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AlldataService {
 
   constructor(public alertController: AlertController) { 
-   
-
+ 
   }
-grocerydata =[];
-grocerytotal=0;
-budget =0;
-grocerylength=0;
 
-
-
+useremail
+clientuid
+creationdate
+fewds(em,clientuid,cdate)
+{
+  // console.log(email,clientuid,cdate)
+     this.useremail = em;
+      this.clientuid = clientuid;
+        this.creationdate =cdate;
+}
 
 }

@@ -12,7 +12,8 @@ import { ListPage } from './list/list.page';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { FormsModule } from '@angular/forms';
-// import { HttpModule } from '@angular/common/http'; 
+
+import { firebaseConfig} from '../app/env';
 import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent,ListPage],
