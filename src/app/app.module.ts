@@ -12,9 +12,10 @@ import { ListPage } from './list/list.page';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { FormsModule } from '@angular/forms';
-
+import { Sim } from '@ionic-native/sim/ngx';
 import { firebaseConfig} from '../app/env';
 import { HttpClientModule } from '@angular/common/http';
+import { DeviceAccounts } from '@ionic-native/device-accounts/ngx';
 @NgModule({
   declarations: [AppComponent,ListPage],
   entryComponents: [ListPage],
@@ -22,12 +23,14 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     StatusBar,
     SplashScreen,
+    Sim,
     SQLite,
     SQLitePorter,
     File,
     HttpClientModule,
     FormsModule,
     FileOpener,
+    DeviceAccounts,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

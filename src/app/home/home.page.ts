@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subscription, observable,timer } from 'rxjs';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -41,9 +42,9 @@ veg =[];
 sub : Subscription
 shoppinglist:any;
 selectedshop;
-  constructor(public actionSheetController:ActionSheetController,private http: HttpClient,public toastcontroller:ToastController,private sqlite: SQLite, public modal:ModalController,public data:AlldataService,public alertController: AlertController,public loadingController:LoadingController) {
-  
-  
+  constructor(public alldata:AlldataService,public router:Router,public actionSheetController:ActionSheetController,private http: HttpClient,public toastcontroller:ToastController,private sqlite: SQLite, public modal:ModalController,public data:AlldataService,public alertController: AlertController,public loadingController:LoadingController) {
+  this.checkprofile()
+   
    
   }
 
@@ -73,7 +74,7 @@ k
   console.log("Time",new Date().toLocaleTimeString().toString())
 
   let info ={};
-   info = {cell:"0607854002",clientuid:"53oN7QL8s8Oc0WJ74fl0uMA8saV2",code:this.scode,date:new Date().toLocaleDateString().toString(),time:new Date().toLocaleTimeString().toString()};
+   info = {cell:"0607854002",clientuid:this.alldata.clientuid,code:this.scode,date:new Date().toLocaleDateString(),time:new Date().toLocaleTimeString().toString()};
   
   
   var headers = new Headers();
@@ -306,8 +307,51 @@ this.presentAlert2()
       }
 
 
+   profile()
+  {
+    this.router.navigateByUrl('profile')
+  }
+
+
+  checkprofile()
+  {
+
+    var headers = new Headers();
+    headers.append("Accept", 'application/json');
+    headers.append('Content-Type', 'application/json; charset=utf-8' );
+
     
 
+
+   this.http.head("https://nathanaelbw.co.za/ussd/json.php")
+   console.log(this.alldata.clientuid)
+   this.http.post("https://nathanaelbw.co.za/ussd/json.php",{clientuid:this.alldata.clientuid}).subscribe(async res =>{
+     console.log(res)
+     let rezz:any =res
+     const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      spinner:'bubbles',
+      duration: 3000
+    });
+    await loading.present();
+
+    
+    loading.onDidDismiss().then(async res=>{
+      if(rezz.phoneNum ==null)
+      {
+       const toast = await this.toastcontroller.create({
+         message: 'Create a profile to proceed.',
+         duration: 2000
+       });
+       toast.present();
+ this.router.navigateByUrl('profile')
+ 
+      }
+      
+    })
+   
+   })
+  }
 
     }
 

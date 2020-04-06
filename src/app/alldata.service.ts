@@ -14,12 +14,12 @@ export class AlldataService {
 useremail
 clientuid
 creationdate
-fewds(em,clientuid,cdate)
+fewds()
 {
   // console.log(email,clientuid,cdate)
-     this.useremail = em;
-      this.clientuid = clientuid;
-        this.creationdate =cdate;
+     console.log(this.useremail,
+      this.clientuid,
+        this.creationdate )
 }
 
 }

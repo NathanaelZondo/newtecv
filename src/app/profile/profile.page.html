@@ -4,20 +4,19 @@
 <pre>
 
 
-
-
-
+</pre>
+<h1 align ="center">Your current network is {{network}}</h1>
+<pre>
 
 
 </pre>
-
 <div class="div2">
 
-<ion-input type ="text" class="myinput" placeholder="Name & Surname" [(ngModel)]="profile.name"></ion-input>
+<ion-input type ="text" class="myinput" placeholder="Enter Your Name & Surname" [(ngModel)]="profile.name"></ion-input>
 
 
 
-<ion-input type ="tel" class="myinput" placeholder="Cellphone Number" [(ngModel)]="profile.phoneNum"></ion-input>
+<ion-input type ="tel" class="myinput" placeholder="{{carrier}}" [(ngModel)]="profile.phoneNum"></ion-input>
 
 
 <button class="button1" (click)="Register(profile)">Add profile</button>

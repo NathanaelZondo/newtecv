@@ -5,8 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import * as firebase from 'firebase';
 import { AlldataService } from './alldata.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  constructor(public alldata:AlldataService,
+  constructor(public router:Router,public alldata:AlldataService,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -29,18 +30,31 @@ export class AppComponent {
   }
 
   async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: 'Please wait...',
-      duration: 2000
-    });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(user=> {
       if (user) {
         // User is signed in.
-        console.log(user,user.email,user.uid,user.metadata.creationTime)
-         this.alldata.fewds(user.email,user.uid,user.metadata.creationTime)
+        console.log(user)
+        if(user.emailVerified==true )  
+    {
+      this.router.navigateByUrl('home')
+      console.log("Email verified")
+
+    }
+    else{
+      this.router.navigateByUrl('login')
+  
+      console.log("Email not verified")
+      // firebase.auth().sendem
+      user.sendEmailVerification().then(res=>{
+        console.log(res)
+      })
+    }
+        this.alldata.useremail=user.email;
+        this.alldata.clientuid =user.uid;
+        this.alldata.creationdate=user.metadata.creationTime
+this.alldata.fewds()
+
+        //  this.alldata.fewds(user.email,user.uid,user.metadata.creationTime)
         // console.log(user.metadata.creationTime)
         
       } else {
@@ -48,6 +62,16 @@ export class AppComponent {
         console.log("no user")
       }
     });
+
+
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+  
   
    
   }
