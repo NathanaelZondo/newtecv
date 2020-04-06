@@ -17,8 +17,8 @@ import { firebaseConfig} from '../app/env';
 import { HttpClientModule } from '@angular/common/http';
 import { DeviceAccounts } from '@ionic-native/device-accounts/ngx';
 @NgModule({
-  declarations: [AppComponent,ListPage],
-  entryComponents: [ListPage],
+  declarations: [AppComponent],
+  entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
   providers: [
     StatusBar,

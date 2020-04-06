@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import * as firebase from 'firebase';
 import { AlldataService } from './alldata.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController,AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  constructor(public router:Router,public alldata:AlldataService,
+  constructor(public alertController: AlertController,public router:Router,public alldata:AlldataService,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -45,8 +45,17 @@ export class AppComponent {
   
       console.log("Email not verified")
       // firebase.auth().sendem
-      user.sendEmailVerification().then(res=>{
+      user.sendEmailVerification().then(async res=>{
         console.log(res)
+
+        const alert = await this.alertController.create({
+          header: 'Email address: '+user.email,
+          subHeader:'Verification Pending.',
+          message: 'Check your emails for verification link.',
+          buttons: ['OK']
+        });
+    
+        await alert.present();
       })
     }
         this.alldata.useremail=user.email;

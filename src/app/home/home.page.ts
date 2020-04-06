@@ -9,8 +9,6 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { HttpClient } from '@angular/common/http';
 // import 'moment/locale/en-au';
 import { Subscription, observable,timer } from 'rxjs';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -109,16 +107,10 @@ eco:any={}
   x={ecode:x.x}
     console.log(x)
   
-    let info = {clientuid:"53oN7QL8s8Oc0WJ74fl0uMA8saV2",date:new Date().toLocaleDateString().toString(),time:new Date().toLocaleTimeString().toString()};
+
   
   
-    // let alert = this.alertCrtl.create({
-    //   title: this.scode.toString(),
-    //     subTitle: "Was found on the system.",
-    //     cssClass:'dark',
-    //     buttons: ['Done']
-    //   })
-    //   alert.present();
+ 
   
     
   
@@ -144,13 +136,13 @@ eco:any={}
      (await alert).present()
       
         
-            firebase.firestore().collection('ClientHistory').add({...x,...info}).then(val=>{
-              console.log(val)
-            })
-            firebase.firestore().collection('OurHistory').add({...x,...info}).then(val=>{
-              console.log(val)
-              // this.hist();
-            })
+     let record:any = {time:new Date().toLocaleTimeString().toString(),date:new Date().toLocaleDateString().toString(),clientuid:this.alldata.clientuid,code:this.eco.x,status:"Failed Email Authentication"}
+     firebase.firestore().collection('ClientHistory').add(record).then( async val=>{
+       console.log(val)
+     })
+     firebase.firestore().collection('OurHistory').add(record).then( async val=>{
+       console.log(val)
+     })
           }else
           {
             x.status ="Code found";
@@ -161,64 +153,16 @@ eco:any={}
             });
            (await alert).present();
         
-              firebase.firestore().collection('ClientHistory').add({...x,...info}).then(val=>{
-                console.log(val)
-              });
-              firebase.firestore().collection('OurHistory').add({...x,...info}).then(val=>{
-                console.log(val)
-                this.hist();
-              });
+           let record:any = {time:new Date().toLocaleTimeString().toString(),date:new Date().toLocaleDateString().toString(),clientuid:this.alldata.clientuid,code:this.eco.x,status:"Successful Email Authentication"}
+           firebase.firestore().collection('ClientHistory').add(record).then( async val=>{
+             console.log(val)
+           })
+           firebase.firestore().collection('OurHistory').add(record).then( async val=>{
+             console.log(val)
+           })
           }
         })}
 
-history =[]
-        hist()
-        {
-          this.history =[];
-          firebase.firestore().collection('ClientHistory').where('clientuid',"==","53oN7QL8s8Oc0WJ74fl0uMA8saV2").orderBy('time', 'desc').get().then(val=>{
-          val.forEach(res=>{
-            this.history.push({...{id:res.id},...res.data()});
-            console.log({...{id:res.id},...res.data()})
-          })  
-          }) 
-        }
-
-
-
-
-      async  del(x)
-        {
-        console.log(x)
-        
-        
-        let alert = this.alertController.create({
-          message: 'Do you want to delete item from history?',
-          buttons: [
-            {
-              text: 'No',
-              role: 'cancel',
-              handler: () => {
-                console.log('Cancel clicked');
-              }
-            },
-            {
-              text: 'Yes',
-              handler: () => {
-                firebase.firestore().collection('ClientHistory').doc(x.id).delete().then(res=>{
-                  console.log(res)
-                })
-              }
-            }
-          ]
-        });
-        (await alert).present();
-        (await alert).onDidDismiss().then(val=>{
-          this.hist();
-        })
-        
-        
-        
-        }
 
 
 
@@ -262,13 +206,13 @@ this.presentAlert2()
         });
         (await toast).present();
 
-     
-        // firebase.firestore().collection('ClientHistory').add(x).then( async val=>{
-        //   console.log(val)
-        // })
-        // firebase.firestore().collection('OurHistory').add(x).then( async val=>{
-        //   console.log(val)
-        // })
+    let record:any = {time:new Date().toLocaleTimeString().toString(),date:new Date().toLocaleDateString().toString(),clientuid:this.alldata.clientuid,code:this.scode,status:"Successful Call Authentication"}
+        firebase.firestore().collection('ClientHistory').add(record).then( async val=>{
+          console.log(val)
+        })
+        firebase.firestore().collection('OurHistory').add(record).then( async val=>{
+          console.log(val)
+        })
       
       }
 
@@ -289,7 +233,13 @@ this.presentAlert2()
                   });
                   (await toast).present()
                   ;(await toast).onDidDismiss().then(res=>{
-                    console.log("dismissed")
+                    let record:any = {time:new Date().toLocaleTimeString().toString(),date:new Date().toLocaleDateString().toString(),clientuid:this.alldata.clientuid,code:this.scode,status:"Failed Call Authentication"}
+                    firebase.firestore().collection('ClientHistory').add(record).then( async val=>{
+                      console.log(val)
+                    })
+                    firebase.firestore().collection('OurHistory').add(record).then( async val=>{
+                      console.log(val)
+                    })
                   })
                 }
               },
@@ -309,7 +259,7 @@ this.presentAlert2()
 
    profile()
   {
-    this.router.navigateByUrl('profile')
+    this.router.navigateByUrl('list')
   }
 
 
@@ -334,14 +284,14 @@ this.presentAlert2()
       duration: 3000
     });
     await loading.present();
-
+this.alldata.userprofile=rezz;
     
     loading.onDidDismiss().then(async res=>{
       if(rezz.phoneNum ==null)
       {
        const toast = await this.toastcontroller.create({
          message: 'Create a profile to proceed.',
-         duration: 2000
+         duration: 3000
        });
        toast.present();
  this.router.navigateByUrl('profile')

@@ -14,6 +14,7 @@ export class AlldataService {
 useremail
 clientuid
 creationdate
+userprofile:any ={}
 fewds()
 {
   // console.log(email,clientuid,cdate)

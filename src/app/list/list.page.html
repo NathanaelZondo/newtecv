@@ -1,34 +1,35 @@
 
-<--
+
 <ion-content>
-   <ion-item  *ngFor ="let item of data.grocerydata;let r = index">
-  <ion-button slot ="end" color ="secondary" (click)="delitem(item,r)"><ion-icon name ="trash" ></ion-icon></ion-button>
-    <ion-label>
-    <h2>{{item.productName}}</h2>
-    <p>R{{item.price}}</p>
-  </ion-label>
-</ion-item>
 
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="close()" color ="none">
-      <ion-icon name="close"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+ <!-- <ion-item>
+ <ion-label class="ion-text-wrap">
+      <ion-text color="primary">
+        <h3>{{item.name}}</h3>
+      </ion-text>
+      <p>{{item.phoneNum}}</p>
+      <ion-text color="secondary">
+        <p>{{item.email}}</p>
+      </ion-text>
+    </ion-label>
+</ion-item>  -->
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button  (click)="createPdf()">
-      Pdf
-    </ion-fab-button>
-  </ion-fab>
 
- 
-   
-
-<div style ="position:fixed;bottom:0;width:100vw;height:70px;background-color:teal;z-index:2;" align ="center">
-<br>
-<label style ="color:white">Total: R{{data.grocerytotal}}</label><br>
-<label style ="color:white">Items in list:{{data.grocerylength}}</label>
-</div>
+  <ion-item  *ngFor ="let x of history" lines="inset">
+  <ion-button fill="outline" slot="end" (click)="del(x)"><ion-icon name ="trash"></ion-icon></ion-button>
+    <ion-label class="ion-text-wrap">
+      <ion-text color="primary">
+       <p>{{x.status}}</p>
+      </ion-text>
+     
+      <ion-text color="secondary">
+        <p>{{x.date}}  {{x.time}}</p>
+      </ion-text>
+      <ion-text color="primary">
+       <p>{{x.code}}</p>
+      </ion-text>
+    </ion-label>
+  </ion-item>
 </ion-content> 
---!>
+
  
