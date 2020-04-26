@@ -1,6 +1,57 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="logoutConfirm()"><ion-icon name ="md-log-out"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="body">
+<div class="profile">
+ 
+
+<h1>Profile</h1>
+<h5>{{item.name}}</h5>
+<h5>{{item.email}}</h5>
+<h5>{{item.phoneNum}}</h5>
+<div class="historybutton">
+  <h2>History</h2>
+  
+</div>
+</div>
 
 
-<ion-content>
+<div class="history" style="overflow-y: scroll;" height:400px>
+
+  <ion-item  *ngFor ="let x of history" lines="full">
+    <div></div>
+    <ion-button fill="clear" slot="end" class="icon1" (click)="del(x)"><ion-icon name ="trash" class="myicons" ></ion-icon></ion-button>
+      <ion-label class="ion-text-wrap">
+        <ion-text color="primary">
+         <p class="para">{{x.status}}</p>
+        </ion-text>
+       
+        <ion-text color="secondary">
+          <p class="para">{{x.date}}  {{x.time}}</p>
+        </ion-text>
+        <ion-text color="primary">
+         <p class="para">{{x.code}}</p>
+        </ion-text>
+      </ion-label>
+    </ion-item> 
+ <!-- <div class="hist"*ngFor ="let x of history">
+  <h3>{{x.status}}</h3>
+  <h3>{{x.date}}  {{x.time}}</h3>
+  <h3>{{x.code}}</h3>
+ 
+ </div>  -->
+ <div class="histicon">
+ 
+  <ion-icon name ="trash"></ion-icon>
+ </div>
+</div>
 
  <!-- <ion-item>
  <ion-label class="ion-text-wrap">
@@ -14,7 +65,7 @@
     </ion-label>
 </ion-item>  -->
 
-
+<!-- 
   <ion-item  *ngFor ="let x of history" lines="inset">
   <ion-button fill="outline" slot="end" (click)="del(x)"><ion-icon name ="trash"></ion-icon></ion-button>
     <ion-label class="ion-text-wrap">
@@ -29,7 +80,7 @@
        <p>{{x.code}}</p>
       </ion-text>
     </ion-label>
-  </ion-item>
+  </ion-item> -->
 </ion-content> 
 
  

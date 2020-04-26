@@ -1,26 +1,38 @@
 
 
 <ion-content>
+<div id="recaptcha-container"></div>
+<div class="body"> 
+
+<div class="loginform">
 <pre>
 
-
 </pre>
-<h1 align ="center">Your current network is {{network}}</h1>
+<h1 style ="color:white;font-weight:bold">Your current network is {{network}}</h1>
 <pre>
-
-
 </pre>
-<div class="div2">
-
-<ion-input type ="text" class="myinput" placeholder="Enter Your Name & Surname" [(ngModel)]="profile.name"></ion-input>
+<ion-input type ="text"  class="myinput" placeholder="Enter Your Name & Surname" [(ngModel)]="profile.name" style ="border-radius:20px;border-color:#2821ad;border-style:inset"></ion-input>
 
 
+<br>
 
-<ion-input type ="tel" class="myinput" placeholder="{{carrier}}" [(ngModel)]="profile.phoneNum"></ion-input>
+<ion-input type ="text"  class="myinput"  placeholder="{{carrier}}" [(ngModel)]="profile.phoneNum" style ="border-radius:20px;border-color:#2821ad;border-style:inset"></ion-input>
 
+<br>
 
-<button class="button1" (click)="Register(profile)">Add profile</button>
+<button (click)="confirmdetails(profile)" class="button1">Submit</button>
+      
+
 
 </div>
+
+
+</div>
+
+
+
+
+
+
 
 </ion-content>

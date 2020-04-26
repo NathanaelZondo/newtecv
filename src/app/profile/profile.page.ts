@@ -5,6 +5,8 @@ import { DeviceAccounts } from '@ionic-native/device-accounts/ngx';
 import { AlldataService } from '../alldata.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AlertController,LoadingController } from '@ionic/angular';
+import * as firebase from "firebase";
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -13,7 +15,7 @@ import { Router } from '@angular/router';
 export class ProfilePage implements OnInit {
 carrier
 network
-  constructor(public router:Router,private toastCtrl: ToastController,public alldata:AlldataService,private deviceAccounts: DeviceAccounts,private sim: Sim,private http: HttpClient) { 
+  constructor(public loadingController: LoadingController,public router:Router,private toastCtrl: ToastController,public alldata:AlldataService,private deviceAccounts: DeviceAccounts,private sim: Sim,private http: HttpClient,public alertController: AlertController) { 
     
     
     
@@ -21,9 +23,9 @@ network
     this.sim.getSimInfo().then(
       (info) => 
       
-      {console.log('Sim info: ', info.cards[0].carrierName)
-      this.network=info.cards[0].carrierName
-    this.carrier="Enter Your "+info.cards[0].carrierName+" Number"
+      {console.log('Sim info: ', info.carrierName)
+      this.network=info.carrierName
+    this.carrier="Enter Your "+info.carrierName+" Number."
     },
       (err) => console.log('Unable to get sim info: ', err)
     );
@@ -48,6 +50,29 @@ network
   }
 
 
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Message <strong>text</strong>!!!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
 
 
@@ -96,6 +121,19 @@ else{
        
 
         console.log(this.profile)
+        firebase.auth().currentUser.updateProfile({displayName:this.profile.phoneNum}).then(async res=>{
+          console.log("updated")
+          const loading = await this.loadingController.create({
+            message: 'Please wait...',
+            duration: 6000,
+            spinner:"bubbles"
+          });
+          await loading.present();
+        })
+
+     
+
+
       //  this.http.head("https://nathanaelbw.co.za/ussd/product.php", 'Access-Control-Allow-Origin: *')
           // return this.http.post('https://nathanaelbw.co.za/ussd/product.php',this.profile)
           this.http.post('https://nathanaelbw.co.za/ussd/product.php',this.profile).subscribe(async response =>{ 
@@ -120,10 +158,30 @@ else{
 
 
 
+async confirmdetails(profile) {
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Are you sure that you have submitted your correct name and surname, and that \"'+profile.phoneNum +'\" is your current '+this.network+' number?',
+      buttons: [
+        {
+          text: 'Edit',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.Register(profile)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }
-
-
-
-
 
 

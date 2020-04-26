@@ -38,17 +38,16 @@ export class RegisterPage implements OnInit {
   {
   
   }
-  }).catch((error) => {
+  }).catch(async error => {
     // Handle Errors here.
     let errorCode = error.code;
     let errorMessage = error.message;
-    // let alert = this.alertCrtl.create({
-    // title: errorCode,
-    //   subTitle: errorMessage,
-    //   buttons: ['Try Again']
-    // })
-    // alert.present();
-   // ...
+    const alert = await this.alertCrtl.create({
+      header: 'Registration Error!',
+      message: error.message,
+      buttons: ['Dismiss']
+    });
+    alert.present()
   });
   
   }

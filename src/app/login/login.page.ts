@@ -20,11 +20,24 @@ export class LoginPage implements OnInit {
   {
   console.log(user)
   firebase.auth().signInWithEmailAndPassword(user.email, user.password).then(async result => {
-    console.log(result.user.uid,result.user.email,'user logged in');
+    console.log(result.user.emailVerified,'user logged in');
 
-    this.router.navigateByUrl('home')
+    
+
+    if(result.user.emailVerified ==false)
+    {
+      const alert = await this.alertCrtl.create({
+        header: 'Login Error!',
+        message: "Your email address has not yet been verified. Check your emails.",
+        buttons: ['Dismiss']
+      });
+  
+      await alert.present();
+    }
+    else
     if(result.user.uid )
     {
+      this.router.navigateByUrl('home');
       const toast =  this.toastCtrl.create({
         message: 'Login Successful!',
         duration: 9000
@@ -35,13 +48,26 @@ export class LoginPage implements OnInit {
      
     
     }
+
+
+
   {
   
   }
-  }).catch((error) => {
+  }).catch(async error=> {
     // Handle Errors here.
     let errorCode = error.code;
     let errorMessage = error.message;
+
+    console.log(error.message)
+
+    const alert = await this.alertCrtl.create({
+      header: 'Login Error!',
+      message: error.message,
+      buttons: ['Dismiss']
+    });
+
+    await alert.present();
     // let alert = this.alertCrtl.create({
     // title: errorCode,
     //   subTitle: errorMessage,

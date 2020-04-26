@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 // import 'moment/locale/en-au';
 import { Subscription, observable,timer } from 'rxjs';
 import { Router } from '@angular/router';
+import { error } from 'util';
 
 @Component({
   selector: 'app-home',
@@ -189,7 +190,7 @@ this.presentAlert2()
 
 
 
-
+     
 
 
       async presentAlert1(x) {

@@ -3,15 +3,13 @@ import { AlldataService } from '../alldata.service';
 import { ToastController,Platform } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
 import { DatabaseService, Dev } from '../../app/services/database.service';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { AlertController } from '@ionic/angular';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-list',
   templateUrl: './list.page.html',
@@ -21,9 +19,22 @@ export class ListPage   {
 
 item:any ={};
   pdfObj = null;
-  constructor( public alldata:AlldataService,public alertController: AlertController,private sqlite: SQLite,private db: DatabaseService,public loadingController: LoadingController,public toastController: ToastController,public data:AlldataService,public modalController: ModalController,private plt: Platform, public fileOpener: FileOpener,private file: File) {
-this.item =this.data.userprofile
-console.log(this.item)
+  constructor( public router:Router,public alldata:AlldataService,public alertController: AlertController,private sqlite: SQLite,private db: DatabaseService,public loadingController: LoadingController,public toastController: ToastController,public data:AlldataService,public modalController: ModalController,private plt: Platform, public fileOpener: FileOpener,private file: File) {
+if(this.item.name ==null)
+{
+this.item.name= firebase.auth().currentUser.displayName
+this.item.email= firebase.auth().currentUser.email
+this.item.phoneNum= ""
+console.log("item null")
+
+}
+else
+{
+  this.item =this.data.userprofile
+  console.log("item not null")
+}
+    
+
 this.hist();
 }
 
@@ -76,6 +87,35 @@ history =[]
         
         }
 
+
+       async logoutConfirm()
+        {
+
+          const alert = await this.alertController.create({
+            header: 'Confirm!',
+            message: 'Are you sure you want to log out?',
+            buttons: [
+              {
+                text: 'Cancel',
+                role: 'cancel',
+                cssClass: 'secondary',
+                handler: (blah) => {
+                  console.log('Confirm Cancel: blah');
+                }
+              }, {
+                text: 'Okay',
+                handler: () => {
+                  console.log('Confirm Okay');
+                  firebase.auth().signOut()
+                  this.router.navigateByUrl('login')
+                  
+                }
+              }
+            ]
+          });
+      
+          await alert.present();
+        }
 }
 
 
