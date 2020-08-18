@@ -6,22 +6,21 @@
   <div  class="body">
 <div class="code">
 
-<button class="send1"  (click)="profile()">View Profile  </button>
-<button class="send"  (click)="shomi()">Send the code  </button>
+<button class="send"  (click)="shomi()">Check the code  </button>
 
-<button class="check" (click)="hideme()">Check the code</button>
+<button class="check" (click)="hideme()">Send the code</button>
 </div>
 
 
-<div class="div1" *ngIf="showme">
+<div class="div1" *ngIf="showme" align ="center">
 
 
 <h1 style ="color:white;font-weight:bold">{{text}}</h1>
 <br>
-<ion-input type ="text" [(ngModel)] ="eco.x" class="myinput" placeholder="Enter the email code"></ion-input> <br><br><br>
+<ion-input type ="text" [(ngModel)] ="eco.email" class="myinput" placeholder="Enter client email address"></ion-input> <br><br><br>
 <br>
 
-<button (click)="eval(eco)" class="mybutoon2"  >Check Code</button><br><br>
+<button (click)="eval(eco)" class="mybutoon2"  >Upload email code</button><br><br>
 
 
 <pre>
@@ -31,18 +30,18 @@
 </pre>
 
 </div>
-<div class="div1" *ngIf="hideMe" >
+<div class="div1" *ngIf="hideMe"  align ="center">
 
 
 <h1 style ="color:white;font-weight:bold">{{text}}</h1>
 
-
+<ion-input type ="text" [(ngModel)] ="cco.cell" class="myinput" placeholder="Enter client's phone number"></ion-input>
 <pre>
 
-
-
 </pre>
-<button (click)="cval()" class="mybutoon" >Send Code</button>
+<button (click)="cval(cco)" class="mybutoon" >Search Phone Number</button>
+
+
 </div>
 
   </div>

@@ -24,17 +24,7 @@ export class LoginPage implements OnInit {
 
     
 
-    if(result.user.emailVerified ==false)
-    {
-      const alert = await this.alertCrtl.create({
-        header: 'Login Error!',
-        message: "Your email address has not yet been verified. Check your emails.",
-        buttons: ['Dismiss']
-      });
-  
-      await alert.present();
-    }
-    else
+    
     if(result.user.uid )
     {
       this.router.navigateByUrl('home');

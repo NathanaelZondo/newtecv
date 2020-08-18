@@ -30,48 +30,14 @@ export class AppComponent {
   }
 
   async presentLoading() {
-    firebase.auth().onAuthStateChanged(user=> {
-      if (user) {
-        // User is signed in.
-        console.log(user)
-        if(user.emailVerified==true )  
-    {
-      this.router.navigateByUrl('home')
-      console.log("Email verified")
+    firebase.auth().onAuthStateChanged(async user=> {
+   
 
-    }
-    else{
-      this.router.navigateByUrl('login')
-  
-      console.log("Email not verified")
-      // firebase.auth().sendem
-      user.sendEmailVerification().then(async res=>{
-        console.log(res)
-
-        const alert = await this.alertController.create({
-          header: 'Email address: '+user.email,
-          subHeader:'Verification Pending.',
-          message: 'Check your emails for verification link.',
-          buttons: ['OK']
-        });
-    
-        await alert.present();
-      })
-    }
+      
         this.alldata.useremail=user.email;
         this.alldata.clientuid =user.uid;
         this.alldata.creationdate=user.metadata.creationTime
 this.alldata.fewds()
-
-        //  this.alldata.fewds(user.email,user.uid,user.metadata.creationTime)
-        // console.log(user.metadata.creationTime)
-        
-      } else {
-        // No user is signed in.
-        console.log("no user")
-      }
-    });
-
 
     const loading = await this.loadingController.create({
       message: 'Please wait...',
@@ -83,7 +49,8 @@ this.alldata.fewds()
   
   
    
-  }
+
+  })  }
 
   initializeApp() {
     this.platform.ready().then(() => {

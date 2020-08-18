@@ -1,61 +1,64 @@
-.loginform{
 
 
-height: 70%;
-width: 70%;
-margin: auto;
-// box-shadow: 100%;
--webkit-box-shadow: 0px 0px 15px 8px #000000; 
-box-shadow: 0px 0px 15px 8px #000000;
-background: linear-gradient(to bottom left, rgb(230, 230, 230) 50%, rgb(221, 221, 240) 50%); 
-
-
-}
-.myinput{
-    margin-top: 12%;
-    margin-left: 6%;
-    height: 8%;
-    width: 90%;
-    border: solid rgb(249, 249, 250);
-   background-color: rgba(1, 16, 145, 0.514);
-    color: rgb(255, 255, 255);
-    font-family: 'Times New Roman', Times, serif;
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: rgba(0, 0, 0, 0.548);
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height:80%;
+    top:10%;
+    border-color:wheat;
+    border-style: outset;
+    border-width:1px;
+    -webkit-box-shadow: 1px 2px 8px 8px #000000; 
+box-shadow: 1px 2px 8px 8px #000000;
+  }
+  
+  .flex-container > div {
+    // background-color: #f1f1f15b;
+    width: 500px;
     
-}
-.button1{
-    margin-top: 12%;
-    margin-left: 6%;
-    height: 8%;
-    width: 90%;
-    border: outset rgb(133, 133, 133);
-    border-radius: 100px;
-    color: whitesmoke;
-background-color:#2821ad;
-
-}
-h1{
     text-align: center;
-    color: rgba(0, 0, 0, 0.822);
-    font-family: sans-serif;;
+    line-height: 75px;
+    font-size: 30px;
+  }
 
-}
-.body{
-opacity: 0.6;
-display: flex;
-background-color:  rgba(180, 176, 176, 0.712);  
-background: linear-gradient(to bottom left, rgb(162, 162, 163) 50%, #2821ad 50%); 
- height: 100%;
-width: 100%;
-}
-h6{
-    text-align: center;
-    color: rgba(0, 0, 0, 0.822);
-    font-family: 'Times New Roman', Times, serif;;
-}
-.create{
- color: rgb(4, 2, 117); 
- text-align: center;
-    color: rgba(0, 0, 0, 0.822);
-    font-family: 'Times New Roman', Times, serif;;  
+  ion-item{
+      color:rgb(255, 255, 255);
+  }
+ 
+::placeholder
+{
+    color:white;
+    font-size:20px;
+    font-weight:thinner;
 }
 
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    
+  }
+  
+  /* Add some content at the bottom of the video/page */
+
+  /* Style the button used to pause/play the video */
+  #myBtn {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  #myBtn:hover {
+    background: #ddd;
+    color: black;
+  }

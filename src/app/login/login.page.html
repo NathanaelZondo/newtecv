@@ -1,13 +1,13 @@
 
 
 <ion-content >
-<div class="body"> 
+<!-- <div class="flex-container" align ="center"> 
 
-<div class="loginform">
+<div >
 <pre>
 
 </pre>
-<h1 style ="color:#2821ad;font-weight:bold">T.C.V</h1>
+<h1 >T.C.V</h1>
 <pre>
 </pre>
 <ion-input type ="text" [(ngModel)]="user.email" class="myinput" placeholder="Email" style ="border-radius:20px;border-color:#2821ad;border-style:inset"></ion-input>
@@ -20,17 +20,61 @@
 
 <button (click)="fun(user)" class="button1">Log In</button>
 
-       <h6>Dont have an account?</h6> <ion-button class="create" align="center" color="transparent" expand ="full" (click)="register()">Register</ion-button>
 
 
 </div>
 
+<div>
+    <h1>COLOR BLUE</h1>
+    
+    </div>
+
 
 </div>
 
+ -->
 
 
+<video autoplay muted loop id="myVideo">
+  <source src="../../assets/rain.mp4.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
 
+
+ ​<div class="flex-container">
+  <div>
+  <pre>
+  </pre>
+
+<h1 style ="color:#ffe9d6">LOGIN</h1>
+
+ 
+ <br>
+  
+  <input color ="light" type ="text" placeholder="Email address" [(ngModel)]="user.email" style ="background:none;border-bottom:inset;border-top:none;border-left:none;border-right:none;width:100%;border-width:1px;height:50px;color:white;font-weight:thinner;font-size:20px;">
+  
+
+<br>
+<br>
+
+  <input  placeholder="Password" color ="light" type ="password" [(ngModel)]="user.password" style ="background:none;border-bottom:inset;border-top:none;border-left:none;border-right:none;width:100%;border-width:1px;height:50px;color:white;font-weight:thinner;font-size:20px;">
+
+<br>
+<br>
+<ion-button color ="light" expand="full" (click)="fun(user)"  >Submit</ion-button>
+</div>
+  <div style ="background-color:rgba(0, 0, 0, 0.397)" align ="center">
+
+  <pre>
+
+  </pre>
+  <p style ="color:white">Welcome to T.C.V</p>
+  <img src="../../assets/TM.png"  style="filter:opacity(70%)">
+  <h1 style ="color:white">You are our priority</h1>
+   
+  </div>
+ 
+</div>
 
 
 </ion-content>
